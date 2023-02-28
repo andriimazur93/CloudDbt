@@ -17,6 +17,7 @@ customer_orders as (
     from orders
     group by 1
 ),
+-- creating a final CTE
 final as (
     select
         customers.customer_id,
