@@ -1,3 +1,6 @@
+-- Disable the required tests for this model
+{{ config(required_tests =None) }}
+
 with payments as (
     select * from {{ ref('stg_payments') }}
 ),

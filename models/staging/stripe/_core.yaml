@@ -4,9 +4,10 @@ models:
   - name: stg_payments
     description: Staged payment data from our jaffle shop app.
     columns:
-      - name: order_id
+      - name: payment_id
         tests:
           - not_null
+          - unique
       - name: payment_method
         tests:
           - accepted_values:

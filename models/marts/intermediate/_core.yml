@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: int_orders_pivoted
+    columns:
+      - name: order_id
+        description: The unique id of the order

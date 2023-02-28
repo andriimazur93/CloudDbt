@@ -1,0 +1,41 @@
+version: 2
+
+models: 
+  - name: dim_customers
+    columns:
+      - name: customer_id
+        description: The unique id of the customer
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+  - name: fct_orders
+    description: Complete orders model including the amount associated with each order.
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "amount > 5"
+    columns:
+      - name: order_id
+        description: The unique id of the order
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: order_id
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+          - unique
+      - name: amount
+        description: Dollars spent per order
+        tests:
+          - assert_column_is_greater_than_five
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 5
+              row_condition: "order_id is not null"
+              strictly: True
