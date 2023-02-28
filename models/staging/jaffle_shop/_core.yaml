@@ -34,3 +34,18 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+  - name: all_days
+    description: Automatically generated table for each day in 2020
+    columns:
+      - name: date_day
+        tests:
+          - unique
+          - not_null
+  - name: customers_daily_summary
+    description: Test table with an automatically generated surrogate key
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      
