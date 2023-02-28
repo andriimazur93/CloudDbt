@@ -7,6 +7,7 @@ orders as (
 employees as (
     select * from {{ ref('employees') }}
 ),
+-- creating customer_orders CTE
 customer_orders as (
     select
         customer_id,

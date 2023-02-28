@@ -1,7 +1,7 @@
 with orders as  (
     select * from {{ ref('stg_orders' )}}
 ),
-
+-- creating base payments CTE
 payments as (
     select * from {{ ref('stg_payments') }}
 ),
